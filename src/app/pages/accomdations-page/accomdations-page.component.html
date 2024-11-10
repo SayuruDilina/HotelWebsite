@@ -1,0 +1,42 @@
+<div class="accomdation-image">
+    <img src="./assets/img/room-1.jpg" alt="">
+    <!-- <p>RO</p> -->
+</div>
+<div *ngFor="let package of accommodationPakageList" class="card" data-aos="fade-up">
+
+    <div class="card-body">
+        <h5 class="card-title">{{package.packageNum}}</h5>
+        <h5 class="card-title-2">{{package.packageName}}</h5>
+        <p *ngFor="let details of package.packageDetails; let i=index" class="card-text">
+            {{i+1}}.{{details}}</p>
+
+        <p class="card-text-price">Per Person -Rs.{{package.price}}</p>
+        <p class="card-text-price">Availability -{{package.availableQty}}</p>
+    </div>
+    <div class="col">
+        <img src="data:image/jpeg;base64,{{package.image1}}" class="card-img-bottom">
+        <img src="data:image/jpeg;base64,{{package.image2}}" class="card-img-bottom">
+        <img src="data:image/jpeg;base64,{{package.image3}}" class="card-img-bottom">
+        <img src="data:image/jpeg;base64,{{package.image4}}" class="card-img-bottom">
+        <!-- <img src="./assets/img/home-meals.png" class="card-img-bottom" alt="...">
+        <img src="./assets/img/home-meals.png" class="card-img-bottom" alt="...">
+        <img src="./assets/img/home-meals.png" class="card-img-bottom" alt="..."> -->
+    </div>
+    <div class="col">
+        <button id="btnOrderNow" (click)="placeOrder(package.accommodationId,package.price,package.availableQty)" [disabled]="!Order.checkIn || !Order.checkOut">Order Now</button>
+        <p class="personNo">Rooms No:</p>
+        <input [(ngModel)]="roomQty" id="txtPersonNo" type="text">
+    </div>
+    <div class="container">
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col-md-6 col-sm-12">
+                <label style="font-weight:600;" for="check In" class="form-label">Check In</label>
+                <input [(ngModel)]="Order.checkIn" class="form-control" type="date" name="" id="">
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label style="font-weight:600;" for="check Out" class="form-label">Check Out</label>
+                <input [(ngModel)]="Order.checkOut" class="form-control" type="date" name="" id="">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+.card {
+    margin: 20px;
+    background-color: #F7E3D1;
+}
+
+.menu-image img {
+    width: 100%;
+    height: 100vh;
+}
+
+.card img {
+    margin-left: 55px;
+    margin-bottom: 20px;
+    width: 20%;
+    height: 40vh;
+}
+
+
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-title-2 {
+    margin-top: -30px;
+    margin-left: 1100px;
+    font-weight: bold;
+}
+
+.card-text {
+    margin-left: 20px;
+    font-weight: 600;
+}
+
+.card-text-price {
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+#btnOrderNow {
+    margin-left: 50px;
+    padding: 15px;
+    font-weight: bold;
+    border: none;
+    font-size: larger;
+    margin-bottom: 10px;
+    background-color: #4a4036;
+    border-radius: 10px;
+    color: white;
+}
+
+.personNo {
+    position: absolute;
+    margin-top: -50px;
+    margin-left: 900px;
+    font-weight: 600;
+}
+
+#txtPersonNo {
+    position: absolute;
+    margin-left: 820px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+@media (max-width: 425px) {
+    .card img {
+        margin-left: 20px;
+        margin-bottom: 20px;
+        width: 90%;
+        height: 30vh;
+    }
+
+    .card-title-2 {
+        margin-top: -35px;
+        margin-left: 200px;
+        font-weight: bold;
+    }
+
+    #btnOrderNow {
+        margin-left: 20px;
+        padding: 10px;
+        font-weight: bold;
+        border: none;
+        font-size: large;
+        margin-bottom: 10px;
+        background-color: #4a4036;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .personNo {
+        position: absolute;
+        margin-top: -70px;
+        margin-left: 200px;
+        font-weight: 600;
+    }
+
+    #txtPersonNo {
+        position: absolute;
+        margin-left: 5px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 5px;
+    }
+}

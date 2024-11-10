@@ -1,0 +1,41 @@
+<div class="day-out">
+    <img src="./assets/img/day-out-1.jpg" alt="">
+ 
+</div>
+
+<div *ngFor="let package of dayOutPacakgeList" class="card" data-aos="fade-up">
+
+    <div class="card-body">
+        <h5 class="card-title">{{package.packageNum}}</h5>
+        <h5 class="card-title-2">{{package.packageName}}</h5>
+        <p *ngFor="let details of package.packageDetails; let i=index" class="card-text">
+            {{i+1}}.{{details}}</p>
+
+        <p class="card-text-price">Per Person -Rs.{{package.price}}</p>
+        <p class="card-text-price">Availability -{{package.available_sheets}}</p>
+    </div>
+    <div class="col">
+        <img src="data:image/jpeg;base64,{{package.image1}}" class="card-img-bottom">
+        <img src="data:image/jpeg;base64,{{package.image2}}" class="card-img-bottom">
+        <img src="data:image/jpeg;base64,{{package.image3}}" class="card-img-bottom">
+        <img src="data:image/jpeg;base64,{{package.image4}}" class="card-img-bottom">
+
+    </div>
+    <div class="col">
+        <button id="btnOrderNow"  (click)="placeOrder(package.dayOutID,package.price,package.availableQty)">Order Now</button>
+        <p class="personNo">Persons No:</p>
+        <input [(ngModel)]="personQty" id="txtPersonNo" type="text">
+    </div>
+    <div class="container">
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col-md-6 col-sm-12">
+                <label style="font-weight:600;" for="check In" class="form-label">Check In</label>
+                <input [(ngModel)]="Order.checkIn" class="form-control" type="date" name="" id="">
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label style="font-weight:600;" for="check Out" class="form-label">Check Out</label>
+                <input [(ngModel)]="Order.checkOut" class="form-control" type="date" name="" id="">
+            </div>
+        </div>
+
+</div>
