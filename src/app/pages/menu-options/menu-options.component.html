@@ -1,40 +1,130 @@
 <div class="menu-image">
     <img src="./assets/img/menu-4.jpg" alt="">
 </div>
-
-<div *ngFor="let package of menuOptionPacakgeList" class="card" data-aos="fade-up">
-
-    <div class="card-body">
-        <h5 class="card-title">{{package.packageNum}}</h5>
-        <h5 class="card-title-2">{{package.packageName}}</h5>
-        <p *ngFor="let details of package.packageDetails; let i=index" class="card-text">
-            {{i+1}}.{{details}}</p>
-
-        <p class="card-text-price">Per Person -Rs.{{package.price}}</p>
-        <p class="card-text-price">Availability -{{package.available_sheets}}</p>
-    </div>
-    <div class="col">
-        <img src="data:image/jpeg;base64,{{package.image1}}" class="card-img-bottom">
-        <img src="data:image/jpeg;base64,{{package.image2}}" class="card-img-bottom">
-        <img src="data:image/jpeg;base64,{{package.image3}}" class="card-img-bottom">
-        <img src="data:image/jpeg;base64,{{package.image4}}" class="card-img-bottom">
-
-    </div>
-    <div class="col">
-        <button id="btnOrderNow"  (click)="placeOrder(package.menuOptionId,package.price,package.availableQty)">Order Now</button>
-        <p class="personNo">Persons No:</p>
-        <input [(ngModel)]="personQty" id="txtPersonNo" type="text">
-    </div>
-    <div class="container">
-        <div class="row" style="margin-bottom: 10px;">
-            <div class="col-md-6 col-sm-12">
-                <label style="font-weight:600;" for="check In" class="form-label">Check In</label>
-                <input [(ngModel)]="Order.checkIn" class="form-control" type="date" name="" id="">
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <label style="font-weight:600;" for="check Out" class="form-label">Check Out</label>
-                <input [(ngModel)]="Order.checkOut" class="form-control" type="date" name="" id="">
+<div class="container-fluid p-0" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <div class="image-menu-conatiner">
+                <img src="./assets/img/image-menu-conatiner-1.jpg" alt="">
+                <div class="botom-para">
+                    <p>Best Hotel Service</p>
+                </div>
             </div>
         </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="image-menu-conatiner">
+                <img src="./assets/img/home-menu-1.png" alt="">
+                <div class="botom-para">
+                    <p>Unforgettable Culinary</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="image-menu-conatiner">
+                <img src="./assets/img/image-menu-conatiner-3.jpg" alt="">
+                <div class="botom-para">
+                    <p>Best Flavors Presnted</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
+
+<div class="container-fluid p-0" style="margin-top: 50px;">
+    <div class="row">
+        <ng-container *ngFor="let item of menuOptionPacakgeList; let i = index">
+            <div *ngIf="i % 2 === 0" class="col-12">
+
+                <div class="row" id="first-row" data-aos="fade-up-right">
+                    <div class="col-6"> 
+                        <h2 style="margin-left: 50px; font-weight: bold; color:#1c2f36 ;">{{item.packageName}}</h2>
+                        <hr style="margin-top: 20px;">
+                        <p
+                            style="margin-top: 50px; margin-left: 100px; font-size: x-large; color: #939fa3; font-weight: bold;">
+                            Available Seats - {{item.availableSheets}}</p>
+                        <p
+                            style="margin-top: 15px; margin-left: 100px; font-size: larger; color: #939fa3; font-weight: 600;">
+                            Per Person Price - Rs.{{item.price}}</p>
+                        <button data-bs-toggle="modal" (click)="openEditModal(item.price,item.menuOptionId)" data-bs-target="#exampleModal" class="btn">RESERVE</button>
+                    </div>
+                    <div class="col-6">
+                        <div class="hover-image-container">
+                            <img id="Menu-option-img-right" src="data:image/jpeg;base64,{{item.image}}"
+                                alt="Image for odd item" class="img-fluid w-100">
+                            <div class="card-details">
+                                <h5 *ngFor="let details of item.packageDetails; let i=index" class="card-text">
+                                    {{i+1}}.{{details}}</h5>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="i % 2 !== 0" class="col-12">
+
+                <div class="row flex-row-reverse" id="second-row">
+
+                    <div class="col-6">
+                        <h2 style="margin-left: 80px; font-weight: bold; color:#1c2f36 ; margin-top: 50px;">{{ item.text
+                            }}</h2>
+                        <hr style="margin-top: 20px;">
+                        <p
+                            style="margin-top: 50px; margin-left: 200px; font-size: x-large; color: #939fa3; font-weight: bold;">
+                            Available Seats - {{item.availableSheets}}</p>
+                        <p
+                            style="margin-top: 15px; margin-left: 200px; font-size: larger; color: #939fa3; font-weight: 600;">
+                            Per Person Price - Rs.{{item.price}}</p>
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left: 150px;"
+                            class="btn" (click)="openEditModal(item.price,item.menuOptionId)" >RESERVE</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="hover-image-container">
+                        <img id="Menu-option-img-left" src="data:image/jpeg;base64,{{item.image}}" alt="Image for odd item"
+                            class="img-fluid w-100">
+                        <div class="card-details-2">
+                            <h5 *ngFor="let details of item.packageDetails; let i=index" class="card-text">
+                                {{i+1}}.{{details}}</h5>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow-lg">
+            <div class="modal-header bg-primary text-white">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Title</h1>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <label style="font-weight:600; text-transform: uppercase; color:#939fa3 ;" for="check In"
+                        class="form-label">Package id</label>
+                    <input [(ngModel)]="order.packageID" class="form-control" type="text" name="" id="">
+                    <label style="font-weight:600; text-transform: uppercase; color:#939fa3 ;" for="check In"
+                        class="form-label">CHECK IN</label>
+                    <input [(ngModel)]="order.checkIn" class="form-control" type="date" name="" id="">
+                    <label style="font-weight:600; text-transform: uppercase; color:#939fa3 ;" for="check In"
+                        class="form-label">CHECK OUT</label>
+                    <input [(ngModel)]="order.checkOut"  class="form-control" type="date" name="" id="">
+                    <label style="font-weight:600; text-transform: uppercase; color:#939fa3 ;" for="check In"
+                        class="form-label">GUESTS</label>
+                    <input [(ngModel)]="personQty" class="form-control" type="text" name="" id="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" style="width:10px; margin-left: 5px;" type="button" data-bs-dismiss="modal"  (click)="placeOrder()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+  

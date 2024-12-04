@@ -1,15 +1,25 @@
+*{
+padding: 0;
+margin: 0;
+}
 .navbar ul li {
-    margin-left: 70px;
-    font-weight: lighter;
+    margin-left: 50px;
+    font-weight: bold;
     letter-spacing: 1px;
+    margin-top: 10px;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-#hotel-logo{
-    width: 10%;
-    justify-content: center;
-    margin-left: 600px;
+.navbar ul li a {
+    color: #1c2f36;
 }
+
+#hotel-logo {
+    width: 5%;
+    justify-content: center;
+    margin-left: 0px;
+}
+
 .navbar-nav .nav-link {
     color: #4E3B31;
 }
@@ -37,31 +47,35 @@
     /* background-color: #EAC8AB; */
     /* box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4); */
     width: 100%;
-
+    height: 15vh;
     /* position: absolute; */
-
+    text-transform: uppercase;
 }
-@media(max-width:963px){
+
+@media(max-width:963px) {
     .navbar {
         background-color: #EAC8AB;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
         position: relative;
         width: 100%;
-        
+
     }
+
     .navbar ul li {
-      margin-top:20px;
-      margin-left: -10px;
+        margin-top: 20px;
+        margin-left: -10px;
         font-weight: lighter;
         letter-spacing: 1px;
         transition: color 0.3s ease, transform 0.3s ease;
-       }
-       #btnLogin {
+    }
+
+    #btnLogin {
         margin-left: -10px;
         margin-top: 20px;
+
         /* background: linear-gradient(135deg, #C9AA92, #EAC8AB); */
         background-color: white;
-       border-color:#EAC8AB ;
+        border-color: #EAC8AB;
         padding: 10px 40px;
         display: flex;
         align-items: center;
@@ -73,41 +87,36 @@
         color: #4E3B31;
         /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
         cursor: pointer;
-    
+
         transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
     }
-    
+
     #btnLogin:hover {
         background: linear-gradient(135deg, #EAC8AB, #C9AA92);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         transform: scale(1.05);
     }
-    
+
     #btnLogin:active {
         transform: scale(0.98);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
-    
-    
+
 }
+
 #btnLogin {
     margin-right: 20px;
     margin-left: 30px;
-    /* background: linear-gradient(135deg, #C9AA92, #EAC8AB); */
-    background-color: white;
-   border-color:#EAC8AB ;           
-    padding: 10px 40px;
+    background-color: #d9a878;
+    padding: 20px 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border-radius: 10px; */
-    font-size: medium;
+     font-size: medium;
     letter-spacing: 2px;
-    font-weight: lighter;
+    font-weight: bold;
     color: #4E3B31;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     cursor: pointer;
-
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
 }
 
@@ -153,4 +162,3 @@
     transform: scale(0.98);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-

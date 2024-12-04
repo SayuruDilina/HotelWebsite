@@ -10,6 +10,8 @@ import { PaymentPageComponent } from './pages/payment-page/payment-page.componen
 import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
+import { PasswordResetPageComponent } from './pages/password-reset-page/password-reset-page.component';
 
 export const routes: Routes = [
     {
@@ -55,5 +57,13 @@ export const routes: Routes = [
     {
         path: 'about',
         component: AboutUsComponent
+    },
+    {
+        path:'forgot-password',
+        component:ForgotPasswordPageComponent
+    },
+    {
+        path:'reset-password',
+        component:PasswordResetPageComponent
     }
 ];

@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    
+    width: 10vw;
+    height: 10vw;
+    object-fit: cover;
+    border-radius: 50%;
+    
+    /* Apply the spin animation */ 
+    animation: spin 5s linear infinite;
+  }
+  .dark-blue-background {
+    background-color: #1c2f36; /* Dark blue color */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed; /* Ensures it covers the whole viewport */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it appears above other elements */
+  }
+  

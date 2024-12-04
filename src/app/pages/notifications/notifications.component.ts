@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
-import { UserService } from '../../user.service';
+import { UserService } from '../../../service/user.service';
 import { NgFor } from '@angular/common';
+import { User } from '../../../model/User';
+import { Order } from '../../../model/Order';
 @Component({
   selector: 'app-notifications',
   standalone: true,
@@ -10,8 +12,8 @@ import { NgFor } from '@angular/common';
   styleUrl: './notifications.component.css'
 })
 export class NotificationsComponent  implements OnInit{
-  public user: any = [];
-  public orderList:any=[];
+  public user: User[] = [];
+  public orderList:Order[]=[];
    public customerName:string="";
    public checkOut:any;
    public checkIn:any;
@@ -27,7 +29,7 @@ console.log(this.user[0].email);
   
 const queryString=params.toString();
 
-fetch(`http://localhost:8080/get-order-by-customer?${queryString}`)
+fetch(`http://localhost:8080/order/get-order-by-customer?${queryString}`)
 .then((res)=>res.json()
 ).then((data)=>{
 

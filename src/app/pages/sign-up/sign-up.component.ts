@@ -4,7 +4,9 @@ import { RouterLink } from '@angular/router';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../../user.service';
+import { UserService } from '../../../service/user.service';
+import Swal from 'sweetalert2';
+import { User } from '../../../model/User';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,11 +17,13 @@ import { UserService } from '../../user.service';
 })
 export class SignUpComponent {
 
-  public user: any = { email: "", userName: "", password: "", address: "", contactNumber: "" };
+  public user: User;
 
-  constructor(private http: HttpClient,private userService:UserService) { }
-  email: string = "";
-  password: string = "";
+  constructor(private http: HttpClient,private userService:UserService) { 
+    this.user=new User('','','','','');
+  }
+ public  email: string = "";
+ public  password: string = "";
 
   public signUser() {
     const params = new HttpParams()
@@ -27,10 +31,14 @@ export class SignUpComponent {
       
 const queryString=params.toString();
 
-fetch(`http://localhost:8080/log-in?${queryString}`)
+fetch(`http://localhost:8080/user/log-in?${queryString}`)
 .then((res)=>{
   if(res.status==404){
-    alert("Please Sign Up First");
+     Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Sign Up First!",
+     });
     return null;
   }
      return res.json();
@@ -42,7 +50,27 @@ fetch(`http://localhost:8080/log-in?${queryString}`)
     }else{
       this.user=data;
       this.userService.addUser(this.user);
-      alert("Sign in Succesfull")
+      Swal.fire({
+        title: "Sign In Success!",
+         icon: "success",
+         customClass: {
+          confirmButton: 'btn-success' 
+        },
+        buttonsStyling: false,
+        didOpen: () => {
+            const confirmButton = Swal.getConfirmButton();
+            if (confirmButton) {
+              confirmButton.style.backgroundColor = '#d9a878'; 
+              confirmButton.style.color = 'white'; 
+              confirmButton.style.padding='10px';
+              confirmButton.style.width='150px';
+              confirmButton.style.fontSynthesisWeight='bold';
+            } else {
+              console.warn('Confirm button not found');
+            }
+        }
+
+      });
     }
    
 }))

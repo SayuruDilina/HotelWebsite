@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { Router,NavigationExtras } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
+import { Order } from '../../../model/Order';
+import { AccomdationsPageComponent } from '../accomdations-page/accomdations-page.component';
+import { OrderService } from '../../../service/order.service';
 @Component({
   selector: 'app-check-out',
   standalone: true,
@@ -9,18 +12,14 @@ import { Router,NavigationExtras } from '@angular/router';
 })
 export class CheckOutComponent {
 
-  public order: any;
-  constructor(private router: Router) {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras.state) {
-      this.order = navigation.extras.state['order'];
-      console.log(this.order); 
-    }
+  public order: Order;
+  constructor(private router: Router, private orderService: OrderService) {
+    this.order = orderService.getOrder();
+    console.log(this.order);
+
   }
-  proceedToNextPage(){
-    const navigationExtras: NavigationExtras = {
-      state: { order: this.order }
-    };
-    this.router.navigate(['/payment-page'],navigationExtras);
+
+  proceedToNextPage() {
+    this.router.navigate(['/payment-page']);
   }
 }

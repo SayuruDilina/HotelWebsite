@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../user.service';
+import { UserService } from '../../../service/user.service';
 import { Router } from '@angular/router';
+import { User } from '../../../model/User';
 @Component({
   selector: 'app-reservations-page',
   standalone: true,
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ReservationsPageComponent implements OnInit{
 
-  public user:any=[];
+  public user:User[]=[];
 
   constructor(private userService:UserService,private route:Router){}
   ngOnInit(): void {

@@ -1,7 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+  
+}
 .card {
     margin: 20px;
     background-color: #F7E3D1;
 }
+/* Modal Styling */
+.modal-content {
+    background-color: #ffffff; 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out;
+}
+
+.modal-header {
+    background-color: #007bff; 
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-header .btn-close {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    font-size: 1.1rem;
+    color: #555555; 
+}
+
+.modal-body .text-center {
+    margin: 20px 0;
+}
+
+.modal-footer {
+    border-top: 1px solid #e0e0e0;
+    padding: 15px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-outline-secondary {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+
+.modal.fade .modal-dialog {
+    transform: translate(0, -50px);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal.show .modal-dialog {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+.modal-dialog {
+    position: fixed; 
+    top: 5%;
+    left: 30%;
+    transform: translate(-50%, -50%); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .menu-image img {
     width: 100%;
@@ -64,7 +147,144 @@
     border-radius: 5px;
 }
 
-@media (max-width: 425px) {
+.image-menu-conatiner{
+  margin-left:50px;
+}
+.image-menu-conatiner .botom-para{
+    position: absolute;
+    background-color:#1c2f36;
+    padding: 10px;
+    width:250px;
+    height: 10vh;
+    margin-top: -60px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+.image-menu-conatiner .botom-para:hover{
+
+    background-color:#d9a878;
+  
+}
+#Menu-option-img-left{
+    margin-top: -250px;
+    width: 100%;
+    height:50vh ;
+    justify-content: start;
+    margin-left: 50px;
+    margin-bottom: 50px;
+
+}
+#Menu-option-img-right{
+justify-content: end;
+width: 100%;
+height: 50vh;
+
+}
+.hover-image-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Hide the details by default */
+.card-details {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);  /* Dark background for text visibility */
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+}
+.card-details-2 {
+    display: none;
+    position: absolute;
+    top: -70px;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);  /* Dark background for text visibility */
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+}
+.hover-image-container:hover .card-details-2 {
+    display: block;
+}
+/* Display the details when hovering over the image */
+.hover-image-container:hover .card-details {
+    display: block;
+}
+.hover-image-container:hover img{
+    opacity: 0.5;
+}
+.btn {
+    --color: #1c2f36;
+    padding:0.6em 8.75em;
+    background-color:#d9a878;
+    transition: .5s;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 17px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: white;
+    margin-left: 100px;
+    margin-top: 50px;
+   }
+   
+   .btn::after, .btn::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+    
+   }
+   
+   .btn::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btn:hover::before {
+    transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btn:hover::after {
+    transform: skew(45deg) translate(-50%, -50%);
+   }
+   
+   .btn:hover {
+    color: white;
+   }
+   
+   .btn:active {
+    filter: brightness(.7);
+    transform: scale(.98);
+   }
+
+@media (max-width: 450px) {
+    .image-menu-conatiner{
+        margin-left: 10px;
+   margin-top: 30px;
+      }
     .card img {
         margin-left: 20px;
         margin-bottom: 20px;

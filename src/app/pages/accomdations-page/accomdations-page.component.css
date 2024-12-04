@@ -1,11 +1,171 @@
-.card {
-    margin: 20px;
-    background-color: #F7E3D1;
+*{
+    margin: 0;
+    
 }
+.btn {
+    --color: #1c2f36;
+    padding: 0.6em 2.75em;
+    background-color:#d9a878;
+    transition: .5s;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 17px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: white;
+   }
+   
+   .btn::after, .btn::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+    
+   }
+   
+   .btn::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btn:hover::before {
+    transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btn:hover::after {
+    transform: skew(45deg) translate(-50%, -50%);
+   }
+   
+   .btn:hover {
+    color: white;
+   }
+   
+   .btn:active {
+    filter: brightness(.7);
+    transform: scale(.98);
+   }
+
+   .cart {
+    padding: 50px;
+    margin-top: 20px;
+    margin-left: 100px;
+    width: 100%;
+    /* margin-left: 35%; */
+    background-color: #fff;/* or any preferred light background color */
+    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+                0 2px 4px rgba(0, 0, 0, 0.08);
+    width: 600px;
+}
+
+#cart-side-img{
+  
+    width:550px; 
+        height:68vh; 
+        margin-top:20px;
+        opacity: 0.5;
+}
+#cart-side-text{
+    position: absolute;
+    margin-top: -250px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    font-weight: 800;
+}
+.room-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    width: 600px; 
+    height: 70vh;/* Or a specific size like 300px */
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  .icon {
+    position: absolute;
+    top: 10px; /* Adjust distance from the top */
+    left: 550px; /* Adjust distance from the left */
+    background-color: #fff;
+    border-radius: 50%;
+    width: 40px; /* Set equal width and height */
+    height: 40px;
+   font-size: 25px;
+   font-weight: 600;
+   text-align: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1; 
+  }
+  
+  .room-card .card-inter {
+    position: relative;
+  }
+  
+  .card-image img {
+    width: 600px; 
+    height: 63vh;
+    display: block;
+    
+  }
+
+  #packageName{
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: larger;
+     border-radius: 4px;
+     text-transform: uppercase;
+  }
+  .card-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background:#1c2f36; /* Dark overlay for contrast */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    transform: translateY(100%); /* Slide down initially */
+    transition: transform 0.3s ease;
+    opacity: 0;
+  }
+  
+  .room-card:hover .card-details {
+    transform: translateY(0); /* Slide up on hover */
+    opacity: 1;
+  }
+  .room-card:hover .card-image img {
+    opacity: 0.5; /* Reduce opacity on hover */
+}
+
+
 .accomdation-image img{
     width:100%;
     height: 75vh;
 }
+  
+/* .card {
+    margin: 20px;
+    background-color: #F7E3D1;
+}
+
 .card img {
     margin-left: 55px;
     margin-bottom: 20px;
@@ -53,14 +213,190 @@
     margin-top: 20px;
     border: none;
     border-radius: 5px;
-}
-@media (max-width: 425px) {
-     .card img {
-        margin-left: 20px;
-        margin-bottom: 20px;
-        width: 90%;
-        height: 30vh;
+} */
+
+.image-container {
+    display: flex;
+    justify-content: center;
+   
+  }
+  
+  .image-container img {
+    margin: 0; 
+  }
+  
+.title-small {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #d9a878;
+    margin-top: 10px;
+    font-size: 24px; 
+  }
+  .title-large {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: #1c2f36;
+    margin-top: 4px;
+    font-size: 60px;
+  }
+
+  .card {
+    position: relative;
+    width: 280px;
+    height: 320px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    border-top-left-radius: 50% 100px;
+    border-top-right-radius: 50% 100px; 
+    cursor: pointer;
+    overflow: hidden; 
+  }
+  
+  
+  .card::before,
+  .card::after {
+    position: absolute;
+    content: "";
+    width: 20%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: lightblue;
+    transition: all 0.5s;
+  }
+  
+  .card::before {
+    top: 0;
+    right: 0;
+    border-radius: 0 15px 0 100%;
+  }
+  
+  .card::after {
+    bottom: 0;
+    left: 0;
+    border-radius: 0 100%  0 15px;
+  }
+  
+  .card:hover::before,
+  .card:hover:after {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    transition: all 0.5s;
+  }
+  
+  .card:hover:after {
+    content: "WELCOME ";
+  }
+  
+@media(max-width:768px){
+    .cart {
+        padding: 50px;
+        margin-top: 20px;
+        margin-left: 10px;
+        width: 100%;
+        /* margin-left: 35%; */
+        background-color: #fff; /* or any preferred light background color */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+                    0 2px 4px rgba(0, 0, 0, 0.08);
+        width: 380px;
     }
+    #cart-side-img{
+        margin-left: -61px; 
+        width:450px; 
+        height:40vh; 
+            margin-top:25px;
+    }
+    .title-large {
+        font-size: 36px;
+    }
+    .title-small {
+        font-size: 18px;
+    }
+    .room-card {
+
+        position: relative;
+        overflow: hidden;
+        border-radius: 0;
+        width: 600px; 
+        height: 70vh;/* Or a specific size like 300px */
+        margin-top: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+      .icon {
+        position: absolute;
+        top: 10px; /* Adjust distance from the top */
+        left: 550px; /* Adjust distance from the left */
+        background-color: #fff;
+        border-radius: 50%;
+        width: 40px; /* Set equal width and height */
+        height: 40px;
+       font-size: 25px;
+       font-weight: 600;
+       text-align: center;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 1; 
+      }
+      
+      .room-card .card-inter {
+        position: relative;
+      }
+      
+      .card-image img {
+        width: 600px; 
+        height: 63vh;
+        display: block;
+        
+      }
+    
+      #packageName{
+        position: absolute;
+        top: 10px; 
+        left: 10px; 
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        font-size: larger;
+         border-radius: 4px;
+         text-transform: uppercase;
+      }
+      .card-details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background:#1c2f36; /* Dark overlay for contrast */
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        transform: translateY(100%); /* Slide down initially */
+        transition: transform 0.3s ease;
+        opacity: 0;
+      }
+      
+      .room-card:hover .card-details {
+        transform: translateY(0); /* Slide up on hover */
+        opacity: 1;
+      }
+      .room-card:hover .card-image img {
+        opacity: 0.5; /* Reduce opacity on hover */
+    }
+    
+    
+    
     .card-title-2 {
         margin-top: -35px;
         margin-left: 200px;
@@ -90,4 +426,135 @@
         border: none;
         border-radius: 5px;
     }
+
+}   
+  
+@media (max-width: 425px) {
+
+    #cart-side-img{
+        margin-left: -61px; 
+        width:450px; 
+            height:40vh; 
+            margin-top:25px;
+    }
+    .title-large {
+        font-size: 28px;
+    }
+    .title-small {
+        font-size: 14px;
+    }
+    .room-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0;
+        width: 300px; 
+        height: 30vh;/* Or a specific size like 300px */
+        margin-top: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+      .icon {
+        position: absolute;
+        top: 10px; /* Adjust distance from the top */
+        left: 250px; /* Adjust distance from the left */
+        background-color: #fff;
+        border-radius: 50%;
+        width: 40px; /* Set equal width and height */
+        height: 40px;
+       font-size: 25px;
+       font-weight: 600;
+       text-align: center;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 1; 
+      }
+      
+      .room-card .card-inter {
+        position: relative;
+      }
+      
+      .card-image img {
+        width: 300px; 
+        height: 25vh;
+        display: block;
+        
+      }
+    
+      #packageName{
+        position: absolute;
+        top: 10px; 
+        left: 5px; 
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        font-size: larger;
+         border-radius: 4px;
+         text-transform: uppercase;
+      }
+      .card-details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background:#1c2f36; /* Dark overlay for contrast */
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        transform: translateY(100%); /* Slide down initially */
+        transition: transform 0.3s ease;
+        opacity: 0;
+      }
+      
+      .room-card:hover .card-details {
+        transform: translateY(0); /* Slide up on hover */
+        opacity: 1;
+      }
+      .room-card:hover .card-image img {
+        opacity: 0.5; /* Reduce opacity on hover */
+    }
+    
+    
+    
+    .card-title-2 {
+        margin-top: -35px;
+        margin-left: 200px;
+        font-weight: bold;
+    }
+    #btnOrderNow{
+        margin-left: 20px;
+        padding: 10px;
+        font-weight: bold;
+        border: none;
+        font-size: large;
+        margin-bottom: 10px;
+        background-color:#4a4036 ;
+        border-radius: 10px;
+        color: white;
+    }
+    .personNo{
+        position: absolute;
+        margin-top:-70px;
+        margin-left: 200px;
+        font-weight: 600;
+    }
+    #txtPersonNo{
+        position: absolute;
+        margin-left:5px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    
+   .cart {
+    width: 380px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: -5px;
+    background-color: #fff; /* or any preferred light background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+                0 2px 4px rgba(0, 0, 0, 0.08);
+   }
 }
+

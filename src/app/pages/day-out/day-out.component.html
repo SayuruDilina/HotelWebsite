@@ -1,41 +1,70 @@
 <div class="day-out">
     <img src="./assets/img/day-out-1.jpg" alt="">
- 
+
 </div>
+<div class="container-fluid p-0" style="margin-top: 30px;">
+    <div class="row">
+        <div class="col-12">
+            <p style="color: #1c2f36; font-size: 50px; font-weight: 600; text-align: center;"> Enjoy Your Day</p>
+        </div>
+        <div class="row">
+            <div *ngFor="let package of dayOutPacakgeList"  class="col-md-6 col-sm-12">
+                <div class="room-card shadow-sm">
+                    <div class="card-inter">
+                        <div class="card-image">
+                            <img src="data:image/jpeg;base64,{{package.image}}" alt="Room Image" class="img-fluid"
+                               >
+                            <div class="icons">
+                                <span class="icon heart-icon">{{package.availableSheets}}</span>
+                            </div>
+                            <p id="packageName">{{package.packageName}}</p>
 
-<div *ngFor="let package of dayOutPacakgeList" class="card" data-aos="fade-up">
+                        </div>
+                        <div class="card-details">
+                            <h5>Price :Rs.{{package.price}}</h5>
+                            <p *ngFor="let details of package.packageDetails; let i=index" class="card-text">
+                               🎇{{details}}</p>
+                        </div>
+                    </div>
+                    <button data-bs-spy="scroll"  data-bs-target="#cart" class="btn w-100" (click)="orderCheckOut(package.dayOutID,package.price,package.availableSheets)">Book NOW</button>
+                </div>
 
-    <div class="card-body">
-        <h5 class="card-title">{{package.packageNum}}</h5>
-        <h5 class="card-title-2">{{package.packageName}}</h5>
-        <p *ngFor="let details of package.packageDetails; let i=index" class="card-text">
-            {{i+1}}.{{details}}</p>
-
-        <p class="card-text-price">Per Person -Rs.{{package.price}}</p>
-        <p class="card-text-price">Availability -{{package.available_sheets}}</p>
-    </div>
-    <div class="col">
-        <img src="data:image/jpeg;base64,{{package.image1}}" class="card-img-bottom">
-        <img src="data:image/jpeg;base64,{{package.image2}}" class="card-img-bottom">
-        <img src="data:image/jpeg;base64,{{package.image3}}" class="card-img-bottom">
-        <img src="data:image/jpeg;base64,{{package.image4}}" class="card-img-bottom">
-
-    </div>
-    <div class="col">
-        <button id="btnOrderNow"  (click)="placeOrder(package.dayOutID,package.price,package.availableQty)">Order Now</button>
-        <p class="personNo">Persons No:</p>
-        <input [(ngModel)]="personQty" id="txtPersonNo" type="text">
-    </div>
-    <div class="container">
-        <div class="row" style="margin-bottom: 10px;">
-            <div class="col-md-6 col-sm-12">
-                <label style="font-weight:600;" for="check In" class="form-label">Check In</label>
-                <input [(ngModel)]="Order.checkIn" class="form-control" type="date" name="" id="">
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <label style="font-weight:600;" for="check Out" class="form-label">Check Out</label>
-                <input [(ngModel)]="Order.checkOut" class="form-control" type="date" name="" id="">
             </div>
         </div>
 
+
+    </div>
+
+
+    <div class="row" id="cart"  style="background-color: #faf6f0; margin-bottom: 20px; margin-top: 50px;">
+        <div class="col-md-6 col-sm-12" style="margin-top: 50px; margin-bottom: 50px;">
+            <div class="cart">
+                <label style="font-weight:600; text-transform: uppercase; color:#939fa3 ;" for="check In"
+                    class="form-label">Package id</label>
+                <input  [(ngModel)]="order.packageID" class="form-control" type="text" name="" id="">
+    
+                <label style="font-weight:600; text-transform: uppercase; color:#939fa3 ;" for="check In"
+                    class="form-label">Check-In</label>
+                <input  [(ngModel)]="order.checkIn" class="form-control" type="date" name="" id="">
+    
+                <label style="margin-top: 10px; font-weight:600; text-transform: uppercase; color: #939fa3;" for="check Out"
+                    class="form-label">Check-Out</label>
+                <input  [(ngModel)]="order.checkOut" class="form-control" type="date" name="" id="">
+    
+                <label style="margin-top: 10px; font-weight:600; text-transform: uppercase; color: #939fa3;" for="check Out"
+                    class="form-label">Guests</label>
+                <input [(ngModel)]="personQty"   class="form-control" type="text">
+    
+                <button  style="margin-top: 20px; margin-left: 40px;" class="btn" (click)="placeOrder()">reserve Now</button>
+    
+            </div>
+            
+        </div>
+        <div class="col-md-6  col-sm-12" style="margin-top: 50px; margin-bottom: 50px;">
+
+            <img id="cart-side-img" src="./assets/img/login-2.png" alt="">
+            <p id="cart-side-text">Reserve your order & <br> upload images for personalization</p>
+        </div>
+    </div>
 </div>
+

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { OrderService } from '../../../service/order.service';
+import { Order } from '../../../model/Order';
 
 @Component({
   selector: 'app-payment-page',
@@ -10,17 +13,13 @@ import { Router } from '@angular/router';
 })
 export class PaymentPageComponent {
 
-  public order: any;
-  constructor(private router: Router) {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras.state) {
-      this.order = navigation.extras.state['order'];
-      console.log(this.order); // For testing
-    }
+  public order: Order;
+  constructor(private router: Router, private orderService: OrderService) {
+    this.order = orderService.getOrder();
   }
 
-  proceedOrder(){
-    fetch("http://localhost:8080/place-order", {
+  proceedOrder() {
+    fetch("http://localhost:8080/order/place-order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,10 +32,11 @@ export class PaymentPageComponent {
             alert(JSON.stringify(errorData))
           });
         } else {
+          this.router.navigate(['']);
           return res.json();
         }
       })
-
-  }
   
+  }
+
 }
