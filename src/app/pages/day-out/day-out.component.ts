@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { OrderService } from '../../../service/order.service';
 import { Order } from '../../../model/Order';
 import { User } from '../../../model/User';
+import { TokenService } from '../../../service/token.service';
 @Component({
   selector: 'app-day-out',
   standalone: true,
@@ -20,13 +21,13 @@ export class DayOutComponent  implements OnInit{
   public dayOutPacakgeList:any=[];
   
   public user:User[]=[];
-  // public id:any;
+  public token:string="";
   public personQty:number=0;
   public price:number=0;
 
   public order: Order;
 
-  constructor(private userService:UserService, private router: Router,private orderService:OrderService){
+  constructor(private userService:UserService, private router: Router,private orderService:OrderService,private tokenService:TokenService){
     this.order = new Order('', 0, '', 0, 0, '', '', '');
     this.orderService.setOrder(this.order);
   }
@@ -42,8 +43,14 @@ export class DayOutComponent  implements OnInit{
   }
   
   loadMenuOptionPackageInfo(){
-
-    fetch('http://localhost:8080/day-out/get-all-day-out-packages') .then(res => res.json())
+    this.token=this.tokenService.token;
+    const headers={
+      'Authorization':`Bearer ${this.token}`
+    }
+    fetch('http://localhost:8080/day-out/get-all-day-out-packages',{
+      method:'GET',
+      headers:headers
+    }) .then(res => res.json())
     .then(data => {
       this.dayOutPacakgeList = data.map((pkg: any) => {
         

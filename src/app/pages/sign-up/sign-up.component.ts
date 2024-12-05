@@ -7,11 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../service/user.service';
 import Swal from 'sweetalert2';
 import { User } from '../../../model/User';
+import { TokenService } from '../../../service/token.service';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [RegistrationComponent, RouterLink, HttpClientModule, CommonModule, FormsModule],
+  imports: [ RouterLink, HttpClientModule, CommonModule, FormsModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
@@ -19,7 +20,7 @@ export class SignUpComponent {
 
   public user: User;
 
-  constructor(private http: HttpClient,private userService:UserService) { 
+  constructor(private http: HttpClient,private userService:UserService,private tokenService:TokenService) { 
     this.user=new User('','','','','');
   }
  public  email: string = "";
@@ -45,10 +46,13 @@ fetch(`http://localhost:8080/user/log-in?${queryString}`)
  
   }).then((data=>{
   
-    if(data.password!=this.password){
+    if(data.user.password!=this.password){
       alert("Pssword Incorrect")
     }else{
-      this.user=data;
+      this.user=data.user;
+      this.tokenService.setToken(data.token);
+      console.log(data.token);
+      
       this.userService.addUser(this.user);
       Swal.fire({
         title: "Sign In Success!",

@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Order } from '../../../model/Order';
 import { OrderService } from '../../../service/order.service';
 import { User } from '../../../model/User';
+import { TokenService } from '../../../service/token.service';
 
 @Component({
   selector: 'app-menu-options',
@@ -20,13 +21,13 @@ export class MenuOptionsComponent implements OnInit {
   public menuOptionPacakgeList:any=[];
   
   public user:User[]=[];
-  // public id:any;
+  public token:string="";
   public personQty:number=0;
   public price:number=0;
 
   public order: Order;
 
-  constructor(private userService:UserService, private router: Router,private orderService:OrderService){
+  constructor(private userService:UserService, private router: Router,private orderService:OrderService,private tokenService:TokenService){
     this.order = new Order('', 0, '', 0, 0, '', '', '');
     this.orderService.setOrder(this.order);
   }
@@ -41,9 +42,17 @@ export class MenuOptionsComponent implements OnInit {
     this.loadMenuOptionPackageInfo();
   }
   
-  loadMenuOptionPackageInfo(){
 
-    fetch('http://localhost:8080/menu-option/get-all-menu-option-packages').then(res=>res.json()).then((data)=>{
+  loadMenuOptionPackageInfo(){
+    this.token=this.tokenService.token;
+    const headers={
+      'Authorization':`Bearer ${this.token}`
+    }
+    fetch('http://localhost:8080/menu-option/get-all-menu-option-packages',{
+      method:'GET',
+      headers:headers
+
+    }).then(res=>res.json()).then((data)=>{
       console.log(data);
       this.menuOptionPacakgeList = data.map((pkg: any) => {
         

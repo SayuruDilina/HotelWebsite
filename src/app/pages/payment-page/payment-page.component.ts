@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { OrderService } from '../../../service/order.service';
 import { Order } from '../../../model/Order';
+import { TokenService } from '../../../service/token.service';
 
 @Component({
   selector: 'app-payment-page',
@@ -14,16 +15,20 @@ import { Order } from '../../../model/Order';
 export class PaymentPageComponent {
 
   public order: Order;
-  constructor(private router: Router, private orderService: OrderService) {
+  public token: string = "";
+  constructor(private router: Router, private orderService: OrderService, private tokenService: TokenService) {
     this.order = orderService.getOrder();
   }
 
   proceedOrder() {
+    this.token = this.tokenService.token;
+    const headers = {
+      'Authorization': `Bearer ${this.token}`,
+      "Content-Type": "application/json"
+    }
     fetch("http://localhost:8080/order/place-order", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: headers,
       body: JSON.stringify(this.order)
     })
       .then((res) => {
@@ -36,7 +41,7 @@ export class PaymentPageComponent {
           return res.json();
         }
       })
-  
+
   }
 
 }

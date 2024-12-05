@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
 import { Order } from '../../../model/Order';
 import { User } from '../../../model/User';
 import { OrderService } from '../../../service/order.service';
+import { HttpHeaders } from '@angular/common/http';
+import { TokenService } from '../../../service/token.service';
 
 @Component({
   selector: 'app-accomdations-page',
@@ -23,10 +25,11 @@ export class AccomdationsPageComponent implements OnInit {
   public roomQty: number=0;
   public accommodationPakageList: any = [];
   public price: number=0;
+  public token:string="";
 
   public order: Order;
 
-  constructor(private userService: UserService, private router: Router,private orderService: OrderService) {
+  constructor(private userService: UserService, private router: Router,private orderService: OrderService,private tokenService:TokenService) {
     this.order = new Order('', 0, '', 0, 0, '', '', '');
     this.orderService.setOrder(this.order);
    }
@@ -44,7 +47,18 @@ export class AccomdationsPageComponent implements OnInit {
   }
 
   loadAccommodationPakageInfo() {
-    fetch('http://localhost:8080/accommodation/get-all-accommodation-packages')
+this.token=this.tokenService.token;
+console.log(this.token);
+
+    const headers={
+      'Authorization':`Bearer ${this.token}`
+    }
+
+    fetch('http://localhost:8080/accommodation/get-all-accommodation-packages',{
+      method:'GET',
+      headers:headers
+
+    })
       .then(res => res.json())
       .then(data => {
         this.accommodationPakageList = data.map((pkg: any) => {

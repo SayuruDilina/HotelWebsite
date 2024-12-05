@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TokenService } from '../../../service/token.service';
 
 @Component({
   selector: 'app-forgot-password-page',
@@ -15,13 +16,18 @@ import Swal from 'sweetalert2';
 export class ForgotPasswordPageComponent {
 
   public email:string="";
+  public token:string="";
 
-  constructor(private http:HttpClient,private router:Router){}
+  constructor(private http:HttpClient,private router:Router,private tokenService:TokenService){}
 
   sendOtp(){
-
+    this.token=this.tokenService.token;
+    const headers=new HttpHeaders().set(
+      'Authorization',`Bearer ${this.token}`
+ 
+    )
     console.log(this.email);
-        this.http.get(`http://localhost:8080/user/send-otp/${this.email}`, { responseType: 'text' }).subscribe((res)=>{
+        this.http.get(`http://localhost:8080/user/send-otp/${this.email}`, {responseType: 'text' }).subscribe((res)=>{
       console.log(res);
       
     })
