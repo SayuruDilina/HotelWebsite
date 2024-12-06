@@ -23,8 +23,7 @@ constructor(private http:HttpClient){}
     
     const params = new HttpParams()
     .set('otp', this.otp)
-    .set('password',this.password)
-    ;
+    .set('password',this.password) ;
     
 const queryString=params.toString();
 
